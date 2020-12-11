@@ -32,6 +32,14 @@ require "rack_session_access/capybara"
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.backtrace_exclusion_patterns = [
+    /\/lib\d*\/ruby\//,
+    /bin\//,
+    /gems/,
+    /spec\/spec_helper\.rb/,
+    /lib\/rspec\/(core|expectations|matchers|mocks)/
+  ]
+
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
